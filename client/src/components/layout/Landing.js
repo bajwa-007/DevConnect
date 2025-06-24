@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 const Landing = () => {
   return (
     <section className='landing'>
@@ -8,13 +9,13 @@ const Landing = () => {
             Create a developer profile/portfolio, share posts and get help from
             other developers
           </p>
-          <div class='buttons'>
-            <a href='register.html' class='btn btn-primary'>
+          <div className='buttons'>
+            <Link to='/register' className='btn btn-primary'>
               Sign Up
-            </a>
-            <a href='login.html' class='btn btn-light'>
+            </Link>
+            <Link to='/login' className='btn btn-light'>
               Login
-            </a>
+            </Link>
           </div>
         </div>
       </div>
