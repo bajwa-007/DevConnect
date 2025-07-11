@@ -5,6 +5,8 @@ import { Fragment } from 'react';
 import { getCurrentProfile } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 import { Link } from 'react-router-dom';
+import { User } from 'lucide-react';
+import DashboardActions from './DashboardActions';
 
 const Dashboard = ({
   getCurrentProfile,
@@ -18,22 +20,27 @@ const Dashboard = ({
   return loading || profile === null ? (
     <Spinner loading={loading} />
   ) : (
-    <Fragment>
-      <h1 className='large text-primary'>Dashboard</h1>
-      <p className='lead'>
-        <i className='fas fa-user'></i> Welcome {user && user.name}
-      </p>
-      {profile !== null ? (
-        <Fragment>has</Fragment>
-      ) : (
-        <Fragment>
-          <p>You have not yet set up a profile, please add some info</p>
-          <Link to='/create-profile' className='btn btn-primary my-1'>
-            Create Profile
-          </Link>
-        </Fragment>
-      )}
-    </Fragment>
+    <section className='container'>
+      <Fragment>
+        <h1 className='large text-primary'>Dashboard</h1>
+        <p className='lead'>
+          <User style={{ marginRight: 8, verticalAlign: 'middle' }} />
+          Welcome {user && user.name}
+        </p>
+        {profile !== null ? (
+          <Fragment>
+            <DashboardActions />
+          </Fragment>
+        ) : (
+          <Fragment>
+            <p>You have not yet set up a profile, please add some info</p>
+            <Link to='/create-profile' className='btn btn-primary my-1'>
+              Create Profile
+            </Link>
+          </Fragment>
+        )}
+      </Fragment>
+    </section>
   );
 };
 

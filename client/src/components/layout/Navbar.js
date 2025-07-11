@@ -3,18 +3,20 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 import { Fragment } from 'react/jsx-runtime';
+import { User, LogOut, Code } from 'lucide-react'; // Lucide icons
+
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
         <Link to='/dashboard'>
-          <i className='fas fa-user'></i>
+          <User style={{ verticalAlign: 'middle', marginRight: 4 }} />
           <span className='hide-sm'> Dashboard</span>
         </Link>
       </li>
       <li>
         <a onClick={logout} href='/#!'>
-          <i className='fas fa-user'></i>
+          <LogOut style={{ verticalAlign: 'middle', marginRight: 4 }} />
           <span className='hide-sm'> Logout</span>
         </a>
       </li>
@@ -38,7 +40,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <nav className='navbar bg-dark'>
       <h1>
         <Link to='/'>
-          <i className='fas fa-code'></i> DevConnector
+          <Code style={{ verticalAlign: 'middle', marginRight: 4 }} />{' '}
+          DevConnector
         </Link>
       </h1>
       {!loading && (
