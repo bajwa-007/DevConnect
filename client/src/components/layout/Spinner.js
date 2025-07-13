@@ -1,18 +1,32 @@
-import { ClipLoader } from 'react-spinners';
+import { Loader2 } from 'lucide-react';
 
-const Spinner = ({ loading = true, size = 50, color = '#36d7b7' }) => (
-  <section className='container'>
+const Spinner = ({
+  loading = true,
+  size = 'md',
+  className = '',
+  text = 'Loading...',
+}) => {
+  if (!loading) return null;
+
+  const sizeClasses = {
+    sm: 'w-4 h-4',
+    md: 'w-8 h-8',
+    lg: 'w-12 h-12',
+    xl: 'w-16 h-16',
+  };
+
+  return (
     <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100px',
-      }}
+      className={`flex flex-col items-center justify-center min-h-[200px] ${className}`}
     >
-      <ClipLoader loading={loading} size={size} color={color} />
+      <Loader2
+        className={`${sizeClasses[size]} text-primary-600 animate-spin`}
+      />
+      {text && (
+        <p className='mt-4 text-sm text-gray-500 animate-pulse'>{text}</p>
+      )}
     </div>
-  </section>
-);
+  );
+};
 
 export default Spinner;

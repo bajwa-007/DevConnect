@@ -2,8 +2,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addExperience } from '../../actions/profile';
 import { Link, useNavigate } from 'react-router-dom';
-import { Fragment, useState } from 'react';
-import { Briefcase } from 'lucide-react'; // Lucide icon
+import { useState } from 'react';
+import {
+  Briefcase,
+  Building,
+  MapPin,
+  Calendar,
+  FileText,
+  ArrowLeft,
+  Save,
+} from 'lucide-react';
 
 const AddExperience = ({ addExperience }) => {
   const [formData, setFormData] = useState({
@@ -28,90 +36,182 @@ const AddExperience = ({ addExperience }) => {
   };
 
   return (
-    <Fragment>
-      <section className='container'>
-        <h1 className='large text-primary'>Add An Experience</h1>
-        <p className='lead'>
-          <Briefcase style={{ marginRight: 8, verticalAlign: 'middle' }} />
-          Add any developer/programming positions that you have had in the past
-        </p>
-        <small>* = required field</small>
-        <form className='form' onSubmit={(e) => onSubmit(e)}>
-          <div className='form-group'>
-            <input
-              type='text'
-              placeholder='* Job Title'
-              name='title'
-              value={title}
-              onChange={onChange}
-              required
-            />
+    <div className='min-h-screen pt-20 bg-gray-50'>
+      <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
+        {/* Header */}
+        <div className='mb-8'>
+          <div className='flex items-center space-x-3 mb-4'>
+            <div className='p-2 bg-primary-100 rounded-lg'>
+              <Briefcase className='w-6 h-6 text-primary-600' />
+            </div>
+            <h1 className='text-3xl font-bold text-gray-900'>Add Experience</h1>
           </div>
-          <div className='form-group'>
-            <input
-              type='text'
-              placeholder='* Company'
-              name='company'
-              value={company}
-              onChange={onChange}
-              required
-            />
+          <p className='text-lg text-gray-600 mb-2'>
+            Add any developer/programming positions that you have had in the
+            past
+          </p>
+          <p className='text-sm text-gray-500'>
+            <span className='text-red-500'>*</span> = required field
+          </p>
+        </div>
+
+        {/* Form Card */}
+        <div className='card'>
+          <div className='card-body'>
+            <form onSubmit={(e) => onSubmit(e)} className='space-y-6'>
+              {/* Job Title */}
+              <div className='form-group'>
+                <label className='form-label required'>
+                  <Briefcase className='w-4 h-4' />
+                  Job Title
+                </label>
+                <input
+                  type='text'
+                  placeholder='e.g., Senior Frontend Developer'
+                  name='title'
+                  value={title}
+                  onChange={onChange}
+                  className='form-input'
+                  required
+                />
+              </div>
+
+              {/* Company */}
+              <div className='form-group'>
+                <label className='form-label required'>
+                  <Building className='w-4 h-4' />
+                  Company
+                </label>
+                <input
+                  type='text'
+                  placeholder='e.g., Google, Microsoft, Startup Inc.'
+                  name='company'
+                  value={company}
+                  onChange={onChange}
+                  className='form-input'
+                  required
+                />
+              </div>
+
+              {/* Location */}
+              <div className='form-group'>
+                <label className='form-label'>
+                  <MapPin className='w-4 h-4' />
+                  Location
+                </label>
+                <input
+                  type='text'
+                  placeholder='e.g., San Francisco, CA or Remote'
+                  name='location'
+                  value={location}
+                  onChange={onChange}
+                  className='form-input'
+                />
+              </div>
+
+              {/* Date Range */}
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                {/* From Date */}
+                <div className='form-group'>
+                  <label className='form-label required'>
+                    <Calendar className='w-4 h-4' />
+                    From Date
+                  </label>
+                  <input
+                    type='date'
+                    name='from'
+                    value={from}
+                    onChange={onChange}
+                    className='form-input'
+                    required
+                  />
+                </div>
+
+                {/* To Date */}
+                <div className='form-group'>
+                  <label className='form-label'>
+                    <Calendar className='w-4 h-4' />
+                    To Date
+                  </label>
+                  <input
+                    type='date'
+                    name='to'
+                    value={to}
+                    onChange={onChange}
+                    disabled={toDateDisabled}
+                    className={`form-input ${
+                      toDateDisabled ? 'bg-gray-100 cursor-not-allowed' : ''
+                    }`}
+                  />
+                </div>
+              </div>
+
+              {/* Current Job Checkbox */}
+              <div className='form-group'>
+                <div className='flex items-center space-x-3'>
+                  <input
+                    type='checkbox'
+                    id='current'
+                    name='current'
+                    checked={current}
+                    onChange={() => {
+                      setFormData({ ...formData, current: !current });
+                      toggleDisabled(!toDateDisabled);
+                    }}
+                    className='w-4 h-4 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500 focus:ring-2'
+                  />
+                  <label
+                    htmlFor='current'
+                    className='text-sm font-medium text-gray-700'
+                  >
+                    This is my current job
+                  </label>
+                </div>
+              </div>
+
+              {/* Job Description */}
+              <div className='form-group'>
+                <label className='form-label'>
+                  <FileText className='w-4 h-4' />
+                  Job Description
+                </label>
+                <textarea
+                  name='description'
+                  rows={5}
+                  placeholder='Describe your role, responsibilities, and achievements...'
+                  value={description}
+                  onChange={onChange}
+                  className='form-textarea'
+                />
+                <p className='form-help'>
+                  Describe your key responsibilities and achievements in this
+                  role
+                </p>
+              </div>
+
+              {/* Form Actions */}
+              <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center pt-6 border-t space-y-3 sm:space-y-0'>
+                <Link
+                  to='/dashboard'
+                  className='btn btn-secondary inline-flex items-center justify-center space-x-2'
+                >
+                  <ArrowLeft className='w-4 h-4' />
+                  <span>Go Back</span>
+                </Link>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary inline-flex items-center justify-center space-x-2'
+                >
+                  <Save className='w-4 h-4' />
+                  <span>Add Experience</span>
+                </button>
+              </div>
+            </form>
           </div>
-          <div className='form-group'>
-            <input
-              type='text'
-              placeholder='Location'
-              name='location'
-              value={location}
-              onChange={onChange}
-            />
-          </div>
-          <div className='form-group'>
-            <h4>From Date</h4>
-            <input type='date' name='from' value={from} onChange={onChange} />
-          </div>
-          <div className='form-group'>
-            <p>
-              <input
-                type='checkbox'
-                name='current'
-                checked={current}
-                value={current}
-                onChange={() => {
-                  setFormData({ ...formData, current: !current });
-                  toggleDisabled(!toDateDisabled);
-                }}
-              />{' '}
-              Current Job
-            </p>
-          </div>
-          <div className='form-group'>
-            <h4>To Date</h4>
-            <input
-              type='date'
-              name='to'
-              value={to}
-              onChange={onChange}
-              disabled={toDateDisabled}
-            />
-          </div>
-          <div className='form-group'>
-            <textarea
-              name='description'
-              cols='30'
-              rows='5'
-              placeholder='Job Description'
-              value={description}
-              onChange={onChange}
-            ></textarea>
-          </div>
-          <input type='submit' className='btn btn-primary my-1' />
-          <Link className='btn btn-light my-1' to='/dashboard'>
-            Go Back
-          </Link>
-        </form>
-      </section>
-    </Fragment>
+        </div>
+      </div>
+    </div>
   );
 };
 AddExperience.propTypes = {

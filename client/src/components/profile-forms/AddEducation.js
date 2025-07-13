@@ -2,8 +2,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addEducation } from '../../actions/profile';
 import { Link, useNavigate } from 'react-router-dom';
-import { Fragment, useState } from 'react';
-import { GraduationCap } from 'lucide-react'; // Lucide icon
+import { useState } from 'react';
+import {
+  GraduationCap,
+  School,
+  Award,
+  BookOpen,
+  Calendar,
+  FileText,
+  ArrowLeft,
+  Save,
+} from 'lucide-react';
 
 const AddEducation = ({ addEducation }) => {
   const [formData, setFormData] = useState({
@@ -30,90 +39,182 @@ const AddEducation = ({ addEducation }) => {
   };
 
   return (
-    <Fragment>
-      <section className='container'>
-        <h1 className='large text-primary'>Add Your Education</h1>
-        <p className='lead'>
-          <GraduationCap style={{ marginRight: 8, verticalAlign: 'middle' }} />
-          Add any school, bootcamp, etc that you have attended
-        </p>
-        <small>* = required field</small>
-        <form className='form' onSubmit={onSubmit}>
-          <div className='form-group'>
-            <input
-              type='text'
-              placeholder='* School or Bootcamp'
-              name='school'
-              value={school}
-              onChange={onChange}
-              required
-            />
+    <div className='min-h-screen pt-20 bg-gray-50'>
+      <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
+        {/* Header */}
+        <div className='mb-8'>
+          <div className='flex items-center space-x-3 mb-4'>
+            <div className='p-2 bg-primary-100 rounded-lg'>
+              <GraduationCap className='w-6 h-6 text-primary-600' />
+            </div>
+            <h1 className='text-3xl font-bold text-gray-900'>Add Education</h1>
           </div>
-          <div className='form-group'>
-            <input
-              type='text'
-              placeholder='* Degree or Certificate'
-              name='degree'
-              value={degree}
-              onChange={onChange}
-              required
-            />
+          <p className='text-lg text-gray-600 mb-2'>
+            Add any school, bootcamp, or educational program that you have
+            attended
+          </p>
+          <p className='text-sm text-gray-500'>
+            <span className='text-red-500'>*</span> = required field
+          </p>
+        </div>
+
+        {/* Form Card */}
+        <div className='card'>
+          <div className='card-body'>
+            <form onSubmit={onSubmit} className='space-y-6'>
+              {/* School */}
+              <div className='form-group'>
+                <label className='form-label required'>
+                  <School className='w-4 h-4' />
+                  School or Institution
+                </label>
+                <input
+                  type='text'
+                  placeholder='e.g., Harvard University, Lambda School, freeCodeCamp'
+                  name='school'
+                  value={school}
+                  onChange={onChange}
+                  className='form-input'
+                  required
+                />
+              </div>
+
+              {/* Degree */}
+              <div className='form-group'>
+                <label className='form-label required'>
+                  <Award className='w-4 h-4' />
+                  Degree or Certificate
+                </label>
+                <input
+                  type='text'
+                  placeholder='e.g., Bachelor of Science, Full Stack Web Development Certificate'
+                  name='degree'
+                  value={degree}
+                  onChange={onChange}
+                  className='form-input'
+                  required
+                />
+              </div>
+
+              {/* Field of Study */}
+              <div className='form-group'>
+                <label className='form-label'>
+                  <BookOpen className='w-4 h-4' />
+                  Field of Study
+                </label>
+                <input
+                  type='text'
+                  placeholder='e.g., Computer Science, Web Development, Software Engineering'
+                  name='fieldofstudy'
+                  value={fieldofstudy}
+                  onChange={onChange}
+                  className='form-input'
+                />
+              </div>
+
+              {/* Date Range */}
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                {/* From Date */}
+                <div className='form-group'>
+                  <label className='form-label required'>
+                    <Calendar className='w-4 h-4' />
+                    From Date
+                  </label>
+                  <input
+                    type='date'
+                    name='from'
+                    value={from}
+                    onChange={onChange}
+                    className='form-input'
+                    required
+                  />
+                </div>
+
+                {/* To Date */}
+                <div className='form-group'>
+                  <label className='form-label'>
+                    <Calendar className='w-4 h-4' />
+                    To Date
+                  </label>
+                  <input
+                    type='date'
+                    name='to'
+                    value={to}
+                    onChange={onChange}
+                    disabled={toDateDisabled}
+                    className={`form-input ${
+                      toDateDisabled ? 'bg-gray-100 cursor-not-allowed' : ''
+                    }`}
+                  />
+                </div>
+              </div>
+
+              {/* Current Program Checkbox */}
+              <div className='form-group'>
+                <div className='flex items-center space-x-3'>
+                  <input
+                    type='checkbox'
+                    id='current'
+                    name='current'
+                    checked={current}
+                    onChange={() => {
+                      setFormData({ ...formData, current: !current });
+                      toggleDisabled(!toDateDisabled);
+                    }}
+                    className='w-4 h-4 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500 focus:ring-2'
+                  />
+                  <label
+                    htmlFor='current'
+                    className='text-sm font-medium text-gray-700'
+                  >
+                    I am currently enrolled in this program
+                  </label>
+                </div>
+              </div>
+
+              {/* Program Description */}
+              <div className='form-group'>
+                <label className='form-label'>
+                  <FileText className='w-4 h-4' />
+                  Program Description
+                </label>
+                <textarea
+                  name='description'
+                  rows={5}
+                  placeholder='Describe the program, coursework, achievements, or relevant projects...'
+                  value={description}
+                  onChange={onChange}
+                  className='form-textarea'
+                />
+                <p className='form-help'>
+                  Describe the program, key coursework, or any notable
+                  achievements
+                </p>
+              </div>
+
+              {/* Form Actions */}
+              <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center pt-6 border-t space-y-3 sm:space-y-0'>
+                <Link
+                  to='/dashboard'
+                  className='btn btn-secondary inline-flex items-center justify-center space-x-2'
+                >
+                  <ArrowLeft className='w-4 h-4' />
+                  <span>Go Back</span>
+                </Link>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary inline-flex items-center justify-center space-x-2'
+                >
+                  <Save className='w-4 h-4' />
+                  <span>Add Education</span>
+                </button>
+              </div>
+            </form>
           </div>
-          <div className='form-group'>
-            <input
-              type='text'
-              placeholder='Field of Study'
-              name='fieldofstudy'
-              value={fieldofstudy}
-              onChange={onChange}
-            />
-          </div>
-          <div className='form-group'>
-            <h4>From Date</h4>
-            <input type='date' name='from' value={from} onChange={onChange} />
-          </div>
-          <div className='form-group'>
-            <p>
-              <input
-                type='checkbox'
-                name='current'
-                checked={current}
-                value={current}
-                onChange={() => {
-                  setFormData({ ...formData, current: !current });
-                  toggleDisabled(!toDateDisabled);
-                }}
-              />{' '}
-              Current School or Program
-            </p>
-          </div>
-          <div className='form-group'>
-            <h4>To Date</h4>
-            <input
-              type='date'
-              name='to'
-              value={to}
-              onChange={onChange}
-              disabled={toDateDisabled}
-            />
-          </div>
-          <div className='form-group'>
-            <textarea
-              name='description'
-              cols='30'
-              rows='5'
-              placeholder='Program Description'
-              value={description}
-              onChange={onChange}
-            ></textarea>
-          </div>
-          <input type='submit' className='btn btn-primary my-1' />
-          <Link className='btn btn-light my-1' to='/dashboard'>
-            Go Back
-          </Link>
-        </form>
-      </section>
-    </Fragment>
+        </div>
+      </div>
+    </div>
   );
 };
 
