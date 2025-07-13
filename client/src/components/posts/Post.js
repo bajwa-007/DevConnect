@@ -5,6 +5,7 @@ import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
 
 import PropTypes from 'prop-types';
+import PostForm from './PostForm';
 
 const Post = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
@@ -19,7 +20,7 @@ const Post = ({ getPosts, post: { posts, loading } }) => {
         <p className='lead'>
           <i className='fas fa-user'>Welcome to the community</i>
         </p>
-        {/* Post Form*/}
+        <PostForm />
         <div className='posts'>
           {posts.map((post) => (
             <PostItem key={post._id} post={post} />
