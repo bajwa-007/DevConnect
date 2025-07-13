@@ -7,7 +7,7 @@ import PostItem from './PostItem';
 import PropTypes from 'prop-types';
 import PostForm from './PostForm';
 
-const Post = ({ getPosts, post: { posts, loading } }) => {
+const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
@@ -31,7 +31,7 @@ const Post = ({ getPosts, post: { posts, loading } }) => {
   );
 };
 
-Post.propTypes = {
+Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
 };
@@ -39,4 +39,4 @@ const mapStateToProps = (state) => ({
   post: state.post,
 });
 
-export default connect(mapStateToProps, { getPosts })(Post);
+export default connect(mapStateToProps, { getPosts })(Posts);
