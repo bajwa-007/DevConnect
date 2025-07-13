@@ -21,40 +21,37 @@ const Dashboard = ({
   }, [getCurrentProfile]);
 
   return loading ? (
-    <Spinner loading={loading} />
+    <section className='container'>
+      <Spinner loading={loading} />
+    </section>
   ) : (
     <section className='container'>
-      <Fragment>
-        <h1 className='large text-primary'>Dashboard</h1>
-        <p className='lead'>
-          <User style={{ marginRight: 8, verticalAlign: 'middle' }} />
-          Welcome {user && user.name}
-        </p>
-        {profile !== null ? (
-          <Fragment>
-            <DashboardActions />
-            <Experience experience={profile.experience} />
-            <Education education={profile.education} />
+      <h1 className='large text-primary'>Dashboard</h1>
+      <p className='lead'>
+        <User style={{ marginRight: 8, verticalAlign: 'middle' }} />
+        Welcome {user && user.name}
+      </p>
+      {profile !== null ? (
+        <Fragment>
+          <DashboardActions />
+          <Experience experience={profile.experience} />
+          <Education education={profile.education} />
 
-            <div className='my-2'>
-              <button
-                className='btn btn-danger'
-                onClick={() => deleteAccount()}
-              >
-                <User style={{ marginRight: 8, verticalAlign: 'middle' }} />
-                Delete MY Account
-              </button>
-            </div>
-          </Fragment>
-        ) : (
-          <Fragment>
-            <p>You have not yet set up a profile, please add some info</p>
-            <Link to='/create-profile' className='btn btn-primary my-1'>
-              Create Profile
-            </Link>
-          </Fragment>
-        )}
-      </Fragment>
+          <div className='my-2'>
+            <button className='btn btn-danger' onClick={() => deleteAccount()}>
+              <User style={{ marginRight: 8, verticalAlign: 'middle' }} />
+              Delete MY Account
+            </button>
+          </div>
+        </Fragment>
+      ) : (
+        <Fragment>
+          <p>You have not yet set up a profile, please add some info</p>
+          <Link to='/create-profile' className='btn btn-primary my-1'>
+            Create Profile
+          </Link>
+        </Fragment>
+      )}
     </section>
   );
 };

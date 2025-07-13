@@ -13,6 +13,8 @@ import CreateProfile from './components/profile-forms/CreateProfile';
 import EditProfile from './components/profile-forms/EditProfile';
 import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
+import Profiles from './components/profiles/Profiles';
+import Profile from './components/profile/Profile';
 
 //Redux
 import { Provider } from 'react-redux';
@@ -20,14 +22,12 @@ import store from './store';
 
 import './App.css';
 
-if (localStorage.token) {
-  // Set auth token header
-  setAuthToken(localStorage.token);
-  loadUser();
-}
-
 const App = () => {
   useEffect(() => {
+    if (localStorage.token) {
+      // Set auth token header
+      setAuthToken(localStorage.token);
+    }
     // Load user on initial render
     store.dispatch(loadUser());
   }, []);
@@ -41,6 +41,9 @@ const App = () => {
             <Route path='/' element={<Landing />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/profiles' element={<Profiles />} />
+            <Route path='/profile/:id' element={<Profile />} />
+
             <Route
               path='/dashboard'
               element={
