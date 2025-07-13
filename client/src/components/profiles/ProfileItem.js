@@ -2,15 +2,13 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Check } from 'lucide-react';
 
-const ProfileItem = ({
-  profile: {
-    user: { _id, name, avatar },
-    status,
-    company,
-    location,
-    skills,
-  },
-}) => {
+const ProfileItem = ({ profile }) => {
+  // Guard: if user is missing, don't render this profile
+  if (!profile.user) return null;
+
+  const { _id, name, avatar } = profile.user;
+  const { status, company, location, skills } = profile;
+
   return (
     <div className='profile bg-light'>
       <img src={avatar} alt='' className='round-img' />
