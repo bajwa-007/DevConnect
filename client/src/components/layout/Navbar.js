@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
-import { Fragment } from 'react/jsx-runtime';
+import { Fragment } from 'react';
 import { User, LogOut, Code } from 'lucide-react'; // Lucide icons
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
@@ -10,6 +10,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <ul>
       <li>
         <Link to='/profiles'>Developers</Link>
+      </li>
+      <li>
+        <Link to='/posts'>Posts</Link>
       </li>
       <li>
         <Link to='/dashboard'>
