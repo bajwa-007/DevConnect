@@ -61,9 +61,9 @@ const AddExperience = ({ addExperience }) => {
             <form onSubmit={(e) => onSubmit(e)} className='space-y-6'>
               {/* Job Title */}
               <div className='form-group'>
-                <label className='form-label required'>
+                <label className='form-label required flex items-center space-x-2'>
                   <Briefcase className='w-4 h-4' />
-                  Job Title
+                  <span>Job Title</span>
                 </label>
                 <input
                   type='text'
@@ -78,9 +78,9 @@ const AddExperience = ({ addExperience }) => {
 
               {/* Company */}
               <div className='form-group'>
-                <label className='form-label required'>
+                <label className='form-label required flex items-center space-x-2'>
                   <Building className='w-4 h-4' />
-                  Company
+                  <span>Company</span>
                 </label>
                 <input
                   type='text'
@@ -95,9 +95,9 @@ const AddExperience = ({ addExperience }) => {
 
               {/* Location */}
               <div className='form-group'>
-                <label className='form-label'>
+                <label className='form-label flex items-center space-x-2'>
                   <MapPin className='w-4 h-4' />
-                  Location
+                  <span>Location</span>
                 </label>
                 <input
                   type='text'
@@ -113,9 +113,9 @@ const AddExperience = ({ addExperience }) => {
               <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                 {/* From Date */}
                 <div className='form-group'>
-                  <label className='form-label required'>
+                  <label className='form-label required flex items-center space-x-2'>
                     <Calendar className='w-4 h-4' />
-                    From Date
+                    <span>From Date</span>
                   </label>
                   <input
                     type='date'
@@ -129,9 +129,9 @@ const AddExperience = ({ addExperience }) => {
 
                 {/* To Date */}
                 <div className='form-group'>
-                  <label className='form-label'>
+                  <label className='form-label flex items-center space-x-2'>
                     <Calendar className='w-4 h-4' />
-                    To Date
+                    <span>To Date</span>
                   </label>
                   <input
                     type='date'
@@ -171,9 +171,9 @@ const AddExperience = ({ addExperience }) => {
 
               {/* Job Description */}
               <div className='form-group'>
-                <label className='form-label'>
+                <label className='form-label flex items-center space-x-2'>
                   <FileText className='w-4 h-4' />
-                  Job Description
+                  <span>Job Description</span>
                 </label>
                 <textarea
                   name='description'

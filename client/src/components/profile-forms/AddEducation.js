@@ -64,9 +64,9 @@ const AddEducation = ({ addEducation }) => {
             <form onSubmit={onSubmit} className='space-y-6'>
               {/* School */}
               <div className='form-group'>
-                <label className='form-label required'>
+                <label className='form-label required flex items-center space-x-2'>
                   <School className='w-4 h-4' />
-                  School or Institution
+                  <span>School or Institution</span>
                 </label>
                 <input
                   type='text'
@@ -81,9 +81,9 @@ const AddEducation = ({ addEducation }) => {
 
               {/* Degree */}
               <div className='form-group'>
-                <label className='form-label required'>
+                <label className='form-label required flex items-center space-x-2'>
                   <Award className='w-4 h-4' />
-                  Degree or Certificate
+                  <span>Degree or Certificate</span>
                 </label>
                 <input
                   type='text'
@@ -98,9 +98,9 @@ const AddEducation = ({ addEducation }) => {
 
               {/* Field of Study */}
               <div className='form-group'>
-                <label className='form-label'>
+                <label className='form-label flex items-center space-x-2'>
                   <BookOpen className='w-4 h-4' />
-                  Field of Study
+                  <span>Field of Study</span>
                 </label>
                 <input
                   type='text'

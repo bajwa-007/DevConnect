@@ -88,9 +88,9 @@ const CreateProfile = ({ createProfile }) => {
             <form onSubmit={(e) => onSubmit(e)} className='space-y-6'>
               {/* Professional Status */}
               <div className='form-group'>
-                <label className='form-label required'>
+                <label className='form-label required flex items-center space-x-2'>
                   <User className='w-4 h-4' />
-                  Professional Status
+                  <span>Professional Status</span>
                 </label>
                 <select
                   name='status'
@@ -118,9 +118,9 @@ const CreateProfile = ({ createProfile }) => {
 
               {/* Company */}
               <div className='form-group'>
-                <label className='form-label'>
+                <label className='form-label flex items-center space-x-2'>
                   <Building className='w-4 h-4' />
-                  Company
+                  <span>Company</span>
                 </label>
                 <input
                   type='text'
@@ -137,9 +137,9 @@ const CreateProfile = ({ createProfile }) => {
 
               {/* Website */}
               <div className='form-group'>
-                <label className='form-label'>
+                <label className='form-label flex items-center space-x-2'>
                   <Globe className='w-4 h-4' />
-                  Website
+                  <span>Website</span>
                 </label>
                 <input
                   type='url'
@@ -156,9 +156,9 @@ const CreateProfile = ({ createProfile }) => {
 
               {/* Location */}
               <div className='form-group'>
-                <label className='form-label'>
+                <label className='form-label flex items-center space-x-2'>
                   <MapPin className='w-4 h-4' />
-                  Location
+                  <span>Location</span>
                 </label>
                 <input
                   type='text'
@@ -175,9 +175,9 @@ const CreateProfile = ({ createProfile }) => {
 
               {/* Skills */}
               <div className='form-group'>
-                <label className='form-label required'>
+                <label className='form-label required flex items-center space-x-2'>
                   <Code className='w-4 h-4' />
-                  Skills
+                  <span>Skills</span>
                 </label>
                 <input
                   type='text'
@@ -196,9 +196,9 @@ const CreateProfile = ({ createProfile }) => {
 
               {/* GitHub Username */}
               <div className='form-group'>
-                <label className='form-label'>
+                <label className='form-label flex items-center space-x-2'>
                   <Github className='w-4 h-4' />
-                  GitHub Username
+                  <span>GitHub Username</span>
                 </label>
                 <input
                   type='text'
@@ -216,9 +216,9 @@ const CreateProfile = ({ createProfile }) => {
 
               {/* Bio */}
               <div className='form-group'>
-                <label className='form-label'>
+                <label className='form-label flex items-center space-x-2'>
                   <FileText className='w-4 h-4' />
-                  Bio
+                  <span>Bio</span>
                 </label>
                 <textarea
                   placeholder='Tell us a little about yourself...'
@@ -253,9 +253,9 @@ const CreateProfile = ({ createProfile }) => {
 
                   <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                     <div className='form-group'>
-                      <label className='form-label'>
+                      <label className='form-label flex items-center space-x-2'>
                         <Twitter className='w-4 h-4 text-blue-400' />
-                        Twitter
+                        <span>Twitter</span>
                       </label>
                       <input
                         type='url'
@@ -268,9 +268,9 @@ const CreateProfile = ({ createProfile }) => {
                     </div>
 
                     <div className='form-group'>
-                      <label className='form-label'>
+                      <label className='form-label flex items-center space-x-2'>
                         <Facebook className='w-4 h-4 text-blue-600' />
-                        Facebook
+                        <span>Facebook</span>
                       </label>
                       <input
                         type='url'
@@ -283,9 +283,9 @@ const CreateProfile = ({ createProfile }) => {
                     </div>
 
                     <div className='form-group'>
-                      <label className='form-label'>
+                      <label className='form-label flex items-center space-x-2'>
                         <Linkedin className='w-4 h-4 text-blue-700' />
-                        LinkedIn
+                        <span>LinkedIn</span>
                       </label>
                       <input
                         type='url'
@@ -298,9 +298,9 @@ const CreateProfile = ({ createProfile }) => {
                     </div>
 
                     <div className='form-group'>
-                      <label className='form-label'>
+                      <label className='form-label flex items-center space-x-2'>
                         <Youtube className='w-4 h-4 text-red-600' />
-                        YouTube
+                        <span>YouTube</span>
                       </label>
                       <input
                         type='url'
@@ -313,9 +313,9 @@ const CreateProfile = ({ createProfile }) => {
                     </div>
 
                     <div className='form-group md:col-span-2'>
-                      <label className='form-label'>
+                      <label className='form-label flex items-center space-x-2'>
                         <Instagram className='w-4 h-4 text-pink-600' />
-                        Instagram
+                        <span>Instagram</span>
                       </label>
                       <input
                         type='url'
