@@ -48,7 +48,7 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
             auth.user._id === profile.user._id && (
               <Link
                 to='/edit-profile'
-                className='btn-primary inline-flex items-center space-x-2'
+                className='btn btn-primary inline-flex items-center space-x-2'
               >
                 <Edit3 className='w-4 h-4' />
                 <span>Edit Profile</span>
