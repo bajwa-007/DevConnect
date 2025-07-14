@@ -135,8 +135,6 @@ export const removeLike = (id) => async (dispatch) => {
       type: UPDATE_LIKES,
       payload: { id, likes: res.data },
     });
-
-    dispatch(setAlert('Post Removed', 'success'));
   } catch (err) {
     dispatch({
       type: POST_ERROR,
