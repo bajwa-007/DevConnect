@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb+srv://bajwa123:bajwa123@devconnect.19aygn3.mongodb.net/?retryWrites=true&w=majority&appName=DevConnect",
+  "jwtSecret": "mysecrettoken",
+  "githubClientId": "Ov23liEUknVVKSkl4wRB",
+  "githubClientSecret": "269ae69651c910b4bb17a983c95aaa7088b75991"
+}
