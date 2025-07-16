@@ -1,15 +1,67 @@
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import Spinner from '../layout/Spinner';
 import { getProfiles } from '../../actions/profile';
 import ProfileItem from './ProfileItem';
 import { Users, Search } from 'lucide-react';
 
 const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+
   useEffect(() => {
     getProfiles();
   }, [getProfiles]);
+
+  // Filter profiles based on search term
+  const filteredProfiles = useMemo(() => {
+    if (!searchTerm.trim()) {
+      return profiles;
+    }
+
+    const searchLower = searchTerm.toLowerCase().trim();
+
+    return profiles.filter((profile) => {
+      // Guard: if user is missing, exclude this profile
+      if (!profile.user) return false;
+
+      const { name } = profile.user;
+      const { status, company, location, skills } = profile;
+
+      // Search in name
+      if (name && name.toLowerCase().includes(searchLower)) {
+        return true;
+      }
+
+      // Search in status
+      if (status && status.toLowerCase().includes(searchLower)) {
+        return true;
+      }
+
+      // Search in company
+      if (company && company.toLowerCase().includes(searchLower)) {
+        return true;
+      }
+
+      // Search in location
+      if (location && location.toLowerCase().includes(searchLower)) {
+        return true;
+      }
+
+      // Search in skills
+      if (skills && Array.isArray(skills)) {
+        return skills.some((skill) =>
+          skill.toLowerCase().includes(searchLower)
+        );
+      }
+
+      return false;
+    });
+  }, [profiles, searchTerm]);
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   if (loading) {
     return (
@@ -47,16 +99,50 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
               type='text'
               className='form-input pl-10'
               placeholder='Search developers by name, skills, or location...'
+              value={searchTerm}
+              onChange={handleSearchChange}
             />
           </div>
         </div>
 
+        {/* Search Results Counter */}
+        {searchTerm.trim() && (
+          <div className='mb-6'>
+            <p className='text-sm text-gray-600'>
+              {filteredProfiles.length === 1
+                ? `Found 1 developer matching "${searchTerm}"`
+                : `Found ${filteredProfiles.length} developers matching "${searchTerm}"`}
+            </p>
+          </div>
+        )}
+
         {/* Profiles Grid */}
-        {profiles.length > 0 ? (
+        {filteredProfiles.length > 0 ? (
           <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
-            {profiles.map((profile) => (
+            {filteredProfiles.map((profile) => (
               <ProfileItem key={profile._id} profile={profile} />
             ))}
+          </div>
+        ) : searchTerm.trim() ? (
+          <div className='text-center py-12'>
+            <div className='card max-w-md mx-auto'>
+              <div className='card-body text-center'>
+                <Search className='w-16 h-16 text-gray-400 mx-auto mb-4' />
+                <h3 className='text-xl font-semibold text-gray-900 mb-2'>
+                  No Results Found
+                </h3>
+                <p className='text-gray-600 mb-4'>
+                  No developers match your search for "{searchTerm}". Try
+                  different keywords or browse all profiles.
+                </p>
+                <button
+                  onClick={() => setSearchTerm('')}
+                  className='btn btn-primary'
+                >
+                  Clear Search
+                </button>
+              </div>
+            </div>
           </div>
         ) : (
           <div className='text-center py-12'>
