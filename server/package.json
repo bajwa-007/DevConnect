@@ -12,15 +12,12 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "engines": {
-    "node": "20.x"
-  },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "bcryptjs": "^3.0.2",
     "config": "^4.0.0",
     "date-fns": "^4.1.0",
-    "express": "^5.1.0",
+    "express": "^v4.20.0",
     "express-validator": "^7.2.1",
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^9.0.2",
