@@ -43,9 +43,9 @@ const Landing = ({ isAuthenticated }) => {
         <div className='relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
           <div className='animate-fade-in'>
             <h1 className='text-5xl md:text-7xl font-bold text-white mb-6 leading-tight'>
-              Developer
+              Dev
               <span className='block text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200'>
-                Connector
+                Connect
               </span>
             </h1>
 

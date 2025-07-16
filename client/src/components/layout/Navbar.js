@@ -185,7 +185,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
               className='flex items-center space-x-2 text-xl font-bold gradient-text hover:opacity-80 transition-opacity duration-200'
             >
               <Code size={24} />
-              <span>DevConnector</span>
+              <span>DevConnect</span>
             </Link>
           </div>
 
