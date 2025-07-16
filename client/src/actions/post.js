@@ -10,11 +10,12 @@ import {
   REMOVE_COMMENT,
 } from './types';
 import { setAlert } from './alert';
+import { API_URL } from '../utils/baseUrls';
 
 //Get posts
 export const getPosts = () => async (dispatch) => {
   try {
-    const res = await axios.get('/api/posts');
+    const res = await axios.get(`${API_URL}/api/posts`);
     dispatch({
       type: GET_POSTS,
       payload: res.data,
@@ -51,7 +52,7 @@ export const addPost = (formData) => async (dispatch) => {
     },
   };
   try {
-    const res = await axios.post('/api/posts', formData, config);
+    const res = await axios.post(`${API_URL}/api/posts`, formData, config);
     dispatch({
       type: ADD_POST,
       payload: res.data,
