@@ -31,7 +31,7 @@ export const getPosts = () => async (dispatch) => {
 //Get post
 export const getPost = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/posts/${id}`);
+    const res = await axios.get(`${API_URL}/api/posts/${id}`);
     dispatch({
       type: GET_POST,
       payload: res.data,
@@ -76,7 +76,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
   };
   try {
     const res = await axios.post(
-      `/api/posts/comment/${postId}`,
+      `${API_URL}/api/posts/comment/${postId}`,
       formData,
       config
     );
@@ -97,7 +97,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
 //delete comment
 export const deleteComment = (postId, commentId) => async (dispatch) => {
   try {
-    await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
+    await axios.delete(`${API_URL}/api/posts/comment/${postId}/${commentId}`);
     dispatch({
       type: REMOVE_COMMENT,
       payload: commentId,
@@ -115,7 +115,7 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
 //add like
 export const addLike = (id) => async (dispatch) => {
   try {
-    const res = await axios.put(`/api/posts/like/${id}`);
+    const res = await axios.put(`${API_URL}/api/posts/like/${id}`);
     dispatch({
       type: UPDATE_LIKES,
       payload: { id, likes: res.data },
@@ -131,7 +131,7 @@ export const addLike = (id) => async (dispatch) => {
 //Remove like
 export const removeLike = (id) => async (dispatch) => {
   try {
-    const res = await axios.put(`/api/posts/unlike/${id}`);
+    const res = await axios.put(`${API_URL}/api/posts/unlike/${id}`);
     dispatch({
       type: UPDATE_LIKES,
       payload: { id, likes: res.data },
@@ -147,7 +147,7 @@ export const removeLike = (id) => async (dispatch) => {
 //delete post
 export const deletePost = (id) => async (dispatch) => {
   try {
-    await axios.delete(`/api/posts/${id}`);
+    await axios.delete(`${API_URL}/api/posts/${id}`);
     dispatch({
       type: DELETE_POST,
     });
